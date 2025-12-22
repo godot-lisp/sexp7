@@ -1,6 +1,6 @@
 
-#ifndef GODOT_S7_SCHEME_DEBUG_MACROS_H
-#define GODOT_S7_SCHEME_DEBUG_MACROS_H
+#ifndef SEXP7_DEBUG_MACROS_H
+#define SEXP7_DEBUG_MACROS_H
 
 #include <s7.h>
 #include <godot_cpp/variant/variant.hpp>
@@ -24,4 +24,4 @@ const godot::Variant &watch_variant(
 #define LOG_CALL() 0
 #endif
 
-#endif //GODOT_S7_SCHEME_DEBUG_MACROS_H
+#endif //SEXP7_DEBUG_MACROS_H

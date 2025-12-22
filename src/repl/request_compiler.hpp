@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_REPL_REQUEST_COMPILER_HPP
-#define GODOT_S7_SCHEME_REPL_REQUEST_COMPILER_HPP
+#ifndef SEXP7_REPL_REQUEST_COMPILER_HPP
+#define SEXP7_REPL_REQUEST_COMPILER_HPP
 
 #include "../s7.hpp"
 #include <godot_cpp/variant/packed_byte_array.hpp>
@@ -18,6 +18,6 @@ public:
 
 private:
   s7_protected_ptr compile_geiser_request;
-  s7 scheme;
+  s7 sx7;
 };
 #endif

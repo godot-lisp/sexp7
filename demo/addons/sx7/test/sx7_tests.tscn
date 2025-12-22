@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://8rdh7h8fh5mx"]
+
+[ext_resource type="Script" path="res://addons/sx7/test/sx7_tests.gd" id="1_ke81w"]
+[ext_resource type="SX7Script" path="res://addons/sx7/lib/prelude.sx7" id="2_weia3"]
+[ext_resource type="SX7Script" path="res://test/test-main.sx7" id="3_test"]
+
+[node name="SchemeTests" type="Node"]
+script = ExtResource("1_ke81w")
+
+[node name="SX7" type="SX7" parent="."]
+prelude = Array[SX7Script]([ExtResource("2_weia3")])
+scheme_script = ExtResource("3_test")

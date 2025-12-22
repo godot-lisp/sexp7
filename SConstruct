@@ -36,7 +36,7 @@ def is_submodule_initialized(path):
 
 # -------------------------- Build definition --------------------------
 
-lib_name = "godot-s7-scheme"
+lib_name = "sexp7"
 project_dir = "demo"
 
 local_env = Environment(tools=["default"], PLATFORM="")
@@ -107,8 +107,8 @@ library = env.SharedLibrary(
 copy = env.InstallAs("{}/bin/{}/{}lib{}".format(project_dir, env["platform"], file_path, file), library)
 
 embed_scheme_repl = env.Command(
-    target="src/repl/gen/s7_scheme_repl_string.hpp",
-    source="demo/addons/s7/s7_scheme_repl.scm",
+    target="src/repl/gen/sx7_scheme_repl_string.hpp",
+    source="demo/addons/sx7/sx7_repl.sx7",
     action=embed_file
 )
 

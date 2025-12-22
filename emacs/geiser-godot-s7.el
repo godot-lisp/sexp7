@@ -6,7 +6,7 @@
 ;; Author: Rodrigo B. de Oliveira (rbo@acm.org)
 ;; Maintainer: Rodrigo B. de Oliveira (rbo@acm.org)
 ;; Keywords: languages, godot, s7, scheme, geiser
-;; Homepage: https://github.com/bamboo/godot-s7-scheme
+;; Homepage: https://github.com/bamboo/Sexp7
 ;; Package-Requires: ((emacs "25.1") (geiser "0.28.1"))
 ;; SPDX-License-Identifier: BSD-3-Clause
 ;; Version: 0.1.0

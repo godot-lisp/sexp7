@@ -1,15 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd42y1qp4irg8"]
+[gd_scene load_steps=3 format=3 uid="uid://dd42y1qp4irg8"]
 
-[ext_resource type="SchemeScript" path="res://main.scm" id="1_4c4e2"]
-[ext_resource type="SchemeScript" path="res://addons/s7/lib/prelude.scm" id="1_r2s6g"]
-[ext_resource type="Texture2D" uid="uid://dbx66sovxd1" path="res://icon.svg" id="3_lw6r1"]
+[ext_resource type="SX7Script" path="res://main.sx7" id="1_4c4e2"]
+[ext_resource type="SX7Script" path="res://addons/sx7/lib/prelude.sx7" id="1_r2s6g"]
 
-[node name="Main" type="Node2D"]
-
-[node name="Scheme" type="Scheme" parent="."]
-prelude = Array[SchemeScript]([ExtResource("1_r2s6g")])
+[node name="SX7" type="SX7"]
+prelude = Array[SX7Script]([ExtResource("1_r2s6g")])
 scheme_script = ExtResource("1_4c4e2")
-
-[node name="Sprite2D" type="Sprite2D" parent="Scheme"]
-position = Vector2(567, 359.289)
-texture = ExtResource("3_lw6r1")

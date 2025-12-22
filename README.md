@@ -1,4 +1,4 @@
-# Godot scripting via s7 Scheme
+# Sexp7: Godot scripting via s7 Scheme
 
 [Godot](https://godotengine.org/) integration for the wonderful [s7 Scheme](https://ccrma.stanford.edu/software/snd/snd/s7.html). `s7` interpreters can be added to scenes as `Scheme` nodes which can load and evaluate code.
 
@@ -79,17 +79,17 @@ Make sure `ANDROID_HOME` is set.
 Install [Geiser](https://www.nongnu.org/geiser/) then add the following to your Emacs configuration:
 
 ```elisp
-(add-to-list 'load-path "~/path/to/godot-s7-scheme/emacs/")
-(load "geiser-godot-s7-autoloads.el")
+(add-to-list 'load-path "~/path/to/Sexp7/emacs/")
+(load "geiser-sexp7-autoloads.el")
 ```
 
-The Emacs extension automatically recognize Scheme files inside Godot project directories as `Godot s7 Scheme` files.
+The Emacs extension automatically recognize Scheme files inside Godot project directories as `Sexp7 Scheme` files.
 
 ### Connecting to the editor
 
 1. Start Godot with `--s7-tcp-port=<port-number>` (and/or `--s7-tcp-address=<bind-address>`).
 2. Check the port number in the console.
-3. In Emacs, `M-x connect-to-godot-s7`
+3. In Emacs, `M-x connect-to-sexp7`
 3.1 You can also open a Scheme repl from the shell with `nc <bind-address> <port-number>`
 
 ### Connecting to a running scene

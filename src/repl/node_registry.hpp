@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_REPL_NODE_REGISTRY_HPP
-#define GODOT_S7_SCHEME_REPL_NODE_REGISTRY_HPP
+#ifndef SEXP7_REPL_NODE_REGISTRY_HPP
+#define SEXP7_REPL_NODE_REGISTRY_HPP
 
 #include <godot_cpp/variant/string.hpp>
 #include <optional>

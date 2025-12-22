@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_THREAD_SAFE_QUEUE_HPP
-#define GODOT_S7_SCHEME_THREAD_SAFE_QUEUE_HPP
+#ifndef SEXP7_THREAD_SAFE_QUEUE_HPP
+#define SEXP7_THREAD_SAFE_QUEUE_HPP
 
 #include <mutex>
 #include <optional>

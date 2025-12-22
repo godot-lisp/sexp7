@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_REPL_REQUEST_CONNECTION_HPP
-#define GODOT_S7_SCHEME_REPL_REQUEST_CONNECTION_HPP
+#ifndef SEXP7_REPL_REQUEST_CONNECTION_HPP
+#define SEXP7_REPL_REQUEST_CONNECTION_HPP
 
 #include "node_registry.hpp"
 #include "request_compiler.hpp"

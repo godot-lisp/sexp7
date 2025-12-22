@@ -1,7 +1,7 @@
 #include "request_compiler.hpp"
 #include "../ffi.hpp"
 #include "debug.hpp"
-#include "gen/s7_scheme_repl_string.hpp"
+#include "gen/sx7_scheme_repl_string.hpp"
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
@@ -17,12 +17,12 @@ std::pair<String, T> eval_capturing_error_output(s7_scheme *sc, Function f) {
 }
 
 ReplRequestCompiler::ReplRequestCompiler() {
-  compile_geiser_request = scheme.make_symbol("compile-geiser-request");
-  auto [output, _] = eval_capturing_error_output<nullptr_t>(scheme.get(), [](auto sc) {
-    DEBUG_REPL(s7_scheme_repl_string);
+  compile_geiser_request = sx7.make_symbol("compile-geiser-request");
+  auto [output, _] = eval_capturing_error_output<nullptr_t>(sx7.get(), [](auto sc) {
+    DEBUG_REPL(sx7_scheme_repl_string);
     s7_load_c_string(sc,
-        s7_scheme_repl_string,
-        strlen(s7_scheme_repl_string));
+        sx7_scheme_repl_string,
+        strlen(sx7_scheme_repl_string));
     return nullptr;
   });
   if (!output.is_empty()) {
@@ -35,18 +35,18 @@ ReplRequestCompiler::~ReplRequestCompiler() {
 }
 
 String ReplRequestCompiler::eval(const String &compiled_request) {
-  auto sc = scheme.get();
-  auto res = scheme.eval(compiled_request);
+  auto sc = sx7.get();
+  auto res = sx7.eval(compiled_request);
   return scheme_object_to_godot_string(sc, res);
 }
 
 error_output_and_response ReplRequestCompiler::compile_request(const PackedByteArray &request) {
-  auto compile_geiser_request = scheme.value_of(this->compile_geiser_request);
+  auto compile_geiser_request = sx7.value_of(this->compile_geiser_request);
   if (!s7_is_procedure(compile_geiser_request)) {
     return std::make_pair("repl script is missing a compile-geiser-request function!", "");
   }
 
-  auto sc = scheme.get();
+  auto sc = sx7.get();
   auto [output, compiled_request] =
       eval_capturing_error_output<s7_pointer>(sc,
           [compile_geiser_request, &request](auto sc) {

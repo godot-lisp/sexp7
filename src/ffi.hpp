@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_FFI_H
-#define GODOT_S7_SCHEME_FFI_H
+#ifndef SEXP7_FFI_H
+#define SEXP7_FFI_H
 
 #include "s7.hpp"
 
@@ -35,4 +35,4 @@ inline auto scheme_object_to_godot_string(s7_scheme *sc, s7_pointer o) {
 }
 } //namespace godot
 
-#endif //GODOT_S7_SCHEME_FFI_H
+#endif //SEXP7_FFI_H

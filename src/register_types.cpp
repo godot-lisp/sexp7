@@ -1,9 +1,9 @@
 #include "register_types.h"
-#include "scheme.hpp"
-#include "scheme_object.hpp"
-#include "scheme_repl_server.hpp"
-#include "scheme_script.hpp"
-#include "scheme_script_loader.hpp"
+#include "sx7.hpp"
+#include "sx7_object.hpp"
+#include "sx7_repl_server.hpp"
+#include "sx7_script.hpp"
+#include "sx7_script_loader.hpp"
 #include <gdextension_interface.h>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
@@ -13,13 +13,13 @@
 
 using namespace godot;
 
-static Ref<SchemeScriptLoader> script_loader;
+static Ref<SX7ScriptLoader> script_loader;
 
 void initialize_scene_types() {
-  GDREGISTER_CLASS(SchemeScript);
-  GDREGISTER_CLASS(SchemeScriptLoader);
-  GDREGISTER_CLASS(Scheme);
-  GDREGISTER_CLASS(SchemeObject);
+  GDREGISTER_CLASS(SX7Script);
+  GDREGISTER_CLASS(SX7ScriptLoader);
+  GDREGISTER_CLASS(SX7);
+  GDREGISTER_CLASS(SX7Object);
 
   script_loader.instantiate();
   ResourceLoader::get_singleton()->add_resource_format_loader(script_loader);
@@ -30,11 +30,11 @@ void uninitialize_scene_types() {
   script_loader.unref();
 }
 
-static SchemeReplServer *repl_server = nullptr;
+static SX7ReplServer *repl_server = nullptr;
 
 void initialize_server_types() {
-  GDREGISTER_CLASS(SchemeReplServer);
-  repl_server = memnew(SchemeReplServer);
+  GDREGISTER_CLASS(SX7ReplServer);
+  repl_server = memnew(SX7ReplServer);
   repl_server->start();
 }
 
@@ -70,7 +70,7 @@ void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {
 }
 
 extern "C" {
-GDExtensionBool GDE_EXPORT godot_s7_scheme_library_init(
+GDExtensionBool GDE_EXPORT sexp7_library_init(
     GDExtensionInterfaceGetProcAddress p_get_proc_address,
     GDExtensionClassLibraryPtr p_library,
     GDExtensionInitialization *r_initialization) {

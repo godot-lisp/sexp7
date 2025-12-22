@@ -1,12 +1,13 @@
 #include "ffi.hpp"
 #include "debug_macros.hpp"
 #include "ffi_macros.hpp"
-#include "scheme_callable.hpp"
-#include "scheme_object.hpp"
+#include "sx7_callable.hpp"
+#include "sx7_object.hpp"
 
 #include <godot_cpp/classes/performance.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <vector>
 
 #define VARIANT_TYPE_TAG 0
 
@@ -56,7 +57,7 @@ s7_pointer variant_to_scheme(s7_scheme *sc, const Variant &v) {
       return s7_make_symbol(sc, v.stringify().utf8());
     case Variant::OBJECT: {
       const Object *obj = v;
-      auto scheme_object = dynamic_cast<const SchemeObject *>(obj);
+      auto scheme_object = dynamic_cast<const SX7Object *>(obj);
       if (scheme_object != nullptr && scheme_object->belongs_to(sc)) {
         return scheme_object->get_scheme_ptr();
       }
@@ -154,7 +155,7 @@ Variant scheme_to_variant(s7_scheme *sc, s7_pointer arg) {
     return {};
   }
   if (s7_is_procedure(arg)) {
-    return Callable(memnew(SchemeCallable(sc, arg, false)));
+    return Callable(memnew(SX7Callable(sc, arg, false)));
   }
   if (s7_is_symbol(arg)) {
     return StringName(s7_symbol_name(arg));
@@ -163,7 +164,7 @@ Variant scheme_to_variant(s7_scheme *sc, s7_pointer arg) {
     return s7_character(arg);
   }
   WATCH(arg);
-  return memnew(SchemeObject(sc, arg));
+  return memnew(SX7Object(sc, arg));
 }
 
 s7_pointer g_make_variant(s7_scheme *sc, s7_pointer args) {
@@ -381,7 +382,7 @@ s7_pointer g_make_Callable(s7_scheme *sc, s7_pointer args) {
       s7_is_pair(s7_cdr(args)) ? s7_boolean(sc, s7_cadr(args)) : true;
   return make_variant_object(
       sc,
-      Callable(memnew(SchemeCallable(sc, f, discard_return_value))));
+      Callable(memnew(SX7Callable(sc, f, discard_return_value))));
 }
 
 s7_pointer g_make_Vector2(s7_scheme *sc, s7_pointer args) {
@@ -479,8 +480,8 @@ s7_pointer g_make_Array(s7_scheme *sc, s7_pointer args) {
   return make_variant_object(sc, collect_variants_into(Array(), sc, args));
 }
 
-void define_variant_ffi(s7 &scheme) {
-  auto sc = scheme.get();
+void define_variant_ffi(s7 &sx7) {
+  auto sc = sx7.get();
   auto variant_ty = s7_make_c_type(sc, "Variant");
   DEV_ASSERT(variant_ty == VARIANT_TYPE_TAG);
 

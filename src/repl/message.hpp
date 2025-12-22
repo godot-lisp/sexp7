@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_REPL_MESSAGE_HPP
-#define GODOT_S7_SCHEME_REPL_MESSAGE_HPP
+#ifndef SEXP7_REPL_MESSAGE_HPP
+#define SEXP7_REPL_MESSAGE_HPP
 
 #include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/variant/variant.hpp>

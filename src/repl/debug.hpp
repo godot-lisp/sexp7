@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_REPL_DEBUG_HPP
-#define GODOT_S7_SCHEME_REPL_DEBUG_HPP
+#ifndef SEXP7_REPL_DEBUG_HPP
+#define SEXP7_REPL_DEBUG_HPP
 
 #include <godot_cpp/variant/utility_functions.hpp>
 

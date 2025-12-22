@@ -1,5 +1,5 @@
 #include "mediator.hpp"
-#include "../scheme.hpp"
+#include "../sx7.hpp"
 #include "debug.hpp"
 #include <godot_cpp/variant/utility_functions.hpp>
 

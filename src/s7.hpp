@@ -1,5 +1,5 @@
-#ifndef GODOT_S7_SCHEME_S7_HPP
-#define GODOT_S7_SCHEME_S7_HPP
+#ifndef SEXP7_S7_HPP
+#define SEXP7_S7_HPP
 
 #include <s7.h>
 #include <godot_cpp/variant/variant.hpp>
@@ -22,7 +22,7 @@ public:
   s7(const s7 &other) = default;
   s7();
 
-  [[nodiscard]] s7_scheme *get() const { return scheme.get(); };
+  [[nodiscard]] s7_scheme *get() const { return sx7.get(); };
 
   s7_pointer define(const char *name, s7_pointer value, const char *documentation) const;
   s7_pointer define_constant_with_documentation(
@@ -80,7 +80,7 @@ private:
     return s7_name_to_value(sc, name);
   }
 
-  std::shared_ptr<s7_scheme> scheme;
+  std::shared_ptr<s7_scheme> sx7;
   std::shared_ptr<s7_scheme_context> scheme_context;
 };
-#endif //GODOT_S7_SCHEME_S7_HPP
+#endif //SEXP7_S7_HPP

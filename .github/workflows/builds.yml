@@ -6,7 +6,7 @@ on:
   merge_group:
 
 env:
-  LIBNAME: godot-s7-scheme
+  LIBNAME: sexp7
 
 jobs:
   build:
@@ -329,16 +329,16 @@ jobs:
         run: |
           New-Item -ItemType Directory -Path "bin/pack"
           Copy-Item -Recurse -Force -Path "demo/addons" -Destination "bin/pack/"
-          Copy-Item -Recurse -Force -Path "bin/android", "bin/ios", "bin/linux", "bin/macos", "bin/web", "bin/windows", "demo/bin/godot-s7-scheme.gdextension" -Destination "bin/pack/bin/"
+          Copy-Item -Recurse -Force -Path "bin/android", "bin/ios", "bin/linux", "bin/macos", "bin/web", "bin/windows", "demo/bin/sexp7.gdextension" -Destination "bin/pack/bin/"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: godot-s7-scheme-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}
+          name: sexp7-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.float-precision }}-${{ matrix.target-type }}
           path: |
             ${{ github.workspace }}/bin/pack/**
 
-  # Merges all the build artifacts together into a single godot-s7-scheme artifact.
+  # Merges all the build artifacts together into a single sexp7 artifact.
   # If you comment out this step, all the builds will be uploaded individually.
   merge:
     runs-on: ubuntu-20.04
@@ -347,6 +347,6 @@ jobs:
       - name: Merge Artifacts
         uses: actions/upload-artifact/merge@v4
         with:
-          name: godot-s7-scheme
-          pattern: godot-s7-scheme-*
+          name: sexp7
+          pattern: sexp7-*
           delete-merged: true

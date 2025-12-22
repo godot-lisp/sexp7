@@ -19,6 +19,10 @@ demo/bin/windows/*
 !demo/bin/*.gdextension
 .sconsign*.dblite
 
+# Test output files
+bin/sx7_tests.txt
+bin/s7
+
 # Ignore custom.py
 custom.py
 

@@ -1,0 +1,39 @@
+;; SX7 Demo Script
+;; This script creates an interactive sprite that responds to mouse movement
+;; with chasing, spinning, and scaling effects. It's a showcase of SX7's
+;; integration with Godot's 2D engine.
+
+;; Global variables
+(define sprite #f)                                                          ;; The Sprite2D node we'll animate
+(define time 0)                                                             ;; Accumulates delta time for animations
+
+;; Configurable effect parameters - tweak these to change behavior
+(define chase-factor 0.03)                                                  ;; How closely the sprite follows the mouse (0-1)
+(define spin-speed 33.0)                                                    ;; Degrees per second to rotate
+(define max-scale 3.0)                                                      ;; Maximum size multiplier
+(define min-scale 0.5)                                                      ;; Minimum size multiplier
+(define scale-factor 1.0)                                                   ;; Speed of size pulsing
+
+;; Called when the node enters the scene tree
+(define (_ready)
+  (print "SX7 _ready called")                                               ;; Debug message
+  (set! sprite (new 'Sprite2D))                                             ;; Create a new 2D sprite
+  (! sprite 'set_texture (load-resource "res://icon.svg"))                  ;; Load the Godot icon
+  (! *node* 'add_child sprite)                                              ;; Add sprite as child of this node
+  (! sprite 'set_position (Vector2 400 300)))                               ;; Center it on screen
+
+;; Called every frame with delta time
+(define (_process delta)
+  (set! time (+ time delta))                                                 ;; Update global time for animations
+  (let ((mouse-pos (! (! *node* 'get_viewport) 'get_mouse_position)))        ;; Get mouse position
+
+    ;; Smoothly move sprite toward mouse position
+    (! sprite 'set_position (! (! sprite 'get_position) 'lerp mouse-pos chase-factor))
+
+    ;; Rotate sprite continuously based on time
+    (! sprite 'set_rotation (+ (! sprite 'get_rotation) (* delta spin-speed)))
+
+    ;; Pulse the scale using sine wave for smooth oscillation
+    ;; Formula: oscillates between min-scale and max-scale
+    (let ((scale (+ min-scale (* (- max-scale min-scale) (+ 0.5 (* 0.5 (sin (* time scale-factor))))))))
+      (! sprite 'set_scale (Vector2 scale scale)))))

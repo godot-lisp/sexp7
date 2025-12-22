@@ -38,18 +38,18 @@ void godot_print_error(s7_scheme *sc, uint8_t c, s7_pointer _port) {
 }
 
 void s7::set_current_error_port_function(s7_output_port_function_t f) const {
-  auto sc = scheme.get();
+  auto sc = sx7.get();
   auto port = s7_open_output_function(sc, f);
   s7_set_current_error_port(sc, port);
 }
 
 s7::s7() {
-  scheme = std::shared_ptr<s7_scheme>(s7_init(), s7_free);
+  sx7 = std::shared_ptr<s7_scheme>(s7_init(), s7_free);
   scheme_context = std::make_shared<s7_scheme_context>();
 
   set_current_error_port_function(godot_print_error);
 
-  add_scheme_mapping(scheme.get(), scheme_context.get());
+  add_scheme_mapping(sx7.get(), scheme_context.get());
 }
 
 void s7::load_string(const String &str) const {
