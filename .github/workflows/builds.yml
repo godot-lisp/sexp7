@@ -19,7 +19,7 @@ jobs:
             float-precision: single
             arch: x86_64
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           # - platform: windows
           #   float-precision: single
@@ -73,14 +73,14 @@ jobs:
             float-precision: single
             arch: wasm32
             target-type: template_debug
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
         # Release templates
           - platform: linux
             float-precision: single
             arch: x86_64
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           # - platform: windows
           #   float-precision: single
@@ -203,7 +203,7 @@ jobs:
             float-precision: double
             arch: x86_64
             target-type: template_release
-            os: ubuntu-20.04
+            os: ubuntu-22.04
 
           # - platform: windows
           #   float-precision: double
@@ -341,7 +341,7 @@ jobs:
   # Merges all the build artifacts together into a single sexp7 artifact.
   # If you comment out this step, all the builds will be uploaded individually.
   merge:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - name: Merge Artifacts
