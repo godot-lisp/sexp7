@@ -1,7 +1,7 @@
 [submodule "godot-cpp"]
 	path = godot-cpp
-	url = https://github.com/godotengine/godot-cpp.git
-	branch = 4.0
+	url = https://github.com/godot-lisp/godot-cpp.git
+	branch = 4.5
 [submodule "s7"]
 	path = s7
-	url = https://github.com/bamboo/s7.git
+	url = https://github.com/godot-lisp/s7.git
